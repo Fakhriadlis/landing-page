@@ -136,29 +136,79 @@ a{color:inherit}
 .tri:first-child{border-left:none;padding-left:0}
 .tri:last-child{padding-right:0}
 .tri-num{font-family:var(--sans);font-weight:800;font-size:22px;color:var(--blue)}
-.tri-art{margin:22px 0 28px;height:210px;border-radius:20px;background:var(--bg-950);color:var(--porcelain);padding:26px;display:flex;flex-direction:column;justify-content:center;gap:12px;overflow:hidden;border:1px solid rgba(0,242,254,.12)}
+.tri-art{
+  margin:22px 0 28px;
+  height:220px;
+  border-radius:18px;
+  background:var(--bg-950);
+  color:var(--porcelain);
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(0,242,254,.18);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  cursor:zoom-in;
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+.tri-art:hover{
+  border-color:var(--cyan);
+  box-shadow:0 16px 36px rgba(0,84,235,.28),0 0 22px rgba(0,242,254,.2);
+  transform:translateY(-3px);
+}
+.tri-art-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  transition:transform .35s ease;
+  display:block;
+}
+.tri-art.phone-art{
+  background:radial-gradient(ellipse at center, rgba(0,84,235,.22) 0%, #060B18 80%);
+  padding:12px;
+}
+.tri-art.phone-art .tri-art-img{
+  width:auto;
+  height:100%;
+  max-width:100%;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 8px 24px rgba(0,0,0,.6);
+  border:1px solid rgba(0,242,254,.25);
+}
+.tri-art:hover .tri-art-img{
+  transform:scale(1.03);
+}
+.tri-art-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(6,11,24,.45);
+  opacity:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .25s ease;
+  pointer-events:none;
+}
+.tri-art-overlay span{
+  background:rgba(6,11,24,.92);
+  color:var(--cyan);
+  border:1px solid var(--cyan);
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 4px 16px rgba(0,0,0,.6);
+}
+.tri-art:hover .tri-art-overlay{
+  opacity:1;
+}
 .tri h3{margin:0;font-family:var(--sans);font-weight:700;font-size:26px;line-height:1.18}
 .tri p{margin:12px 0 0;color:var(--muted-l);font-size:16px}
 .tri .hl{display:inline-block;margin-top:18px;font-weight:700;font-size:14px;color:var(--blue);border-bottom:1px solid var(--cyan)}
-/* ilustrasi 01 */
-.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.chip{background:var(--bg-800);border:1px solid rgba(0,242,254,.12);border-radius:10px;padding:11px 10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--porcelain)}
-.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--jade)}
-.chip.more{background:linear-gradient(135deg,#0054EB,#00C6FF);color:#FFFFFF;justify-content:center;font-weight:800;border:none}
-.chip.more::before{display:none}
-/* ilustrasi 02 */
-.bar{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted-d)}
-.bar span:first-child{width:56px}
-.bar i{height:12px;border-radius:6px;background:linear-gradient(90deg,#0054EB,#00F2FE)}
-.bar b{margin-left:auto;color:var(--porcelain);font-weight:700}
-.flow{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:12px;font-weight:700}
-.flow span{border:1px solid var(--cyan-line);color:var(--cyan);background:rgba(0,242,254,.06);padding:5px 11px;border-radius:999px}
-/* ilustrasi 03 */
-.tri-art.phone{justify-content:flex-end;align-items:center;padding-bottom:0}
-.phone-body{width:150px;height:176px;border:2px solid var(--cyan-line);border-bottom:none;border-radius:26px 26px 0 0;padding:20px 12px 0;display:flex;flex-direction:column;gap:9px}
-.notif{background:var(--porcelain);color:var(--ink);border-radius:10px;padding:9px;display:flex;gap:8px;align-items:center;font-size:11px;font-weight:700}
-.notif::before{content:"";width:20px;height:20px;border-radius:6px;background:var(--jade);flex-shrink:0}
-.line{height:8px;border-radius:4px;background:var(--bg-800)}
 
 /* ---------- Fitur detail (Feature Studio) ---------- */
 .feature-studio{margin-top:16px}
@@ -428,11 +478,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
     <div class="triptych">
       <article class="tri">
         <span class="tri-num">01</span>
-        <div class="tri-art" aria-hidden="true">
-          <div class="chips">
-            <span class="chip">Sales 01</span><span class="chip">Sales 02</span><span class="chip">Sales 03</span>
-            <span class="chip">Sales 04</span><span class="chip">Sales 05</span><span class="chip more">50+</span>
-          </div>
+        <div class="tri-art" data-zoom="Nomor Whastapp tanpa batas.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: Papan per Nomor Sales">
+          <img src="Nomor Whastapp tanpa batas.jpg" alt="Papan per Nomor Sales SENTARIS" class="tri-art-img" loading="lazy">
+          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
         </div>
         <h3>Nomor WhatsApp tanpa batas.</h3>
         <p>5 atau 50 nomor sales masuk satu dasbor. Sales tetap pakai WhatsApp di HP; leader melihat semuanya tanpa pinjam HP siapa pun.</p>
@@ -440,11 +488,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
       </article>
       <article class="tri">
         <span class="tri-num">02</span>
-        <div class="tri-art" aria-hidden="true">
-          <div class="bar"><span>Iklan A</span><i style="width:62%"></i><b>9/10</b></div>
-          <div class="bar"><span>Iklan B</span><i style="width:42%"></i><b>6/10</b></div>
-          <div class="bar"><span>Iklan C</span><i style="width:20%"></i><b>3/10</b></div>
-          <div class="flow"><span>Chat</span><span>Lead</span><span>Closing</span></div>
+        <div class="tri-art" data-zoom="ADS Dashboard.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: ADS Dashboard CRM">
+          <img src="ADS Dashboard.jpg" alt="ADS Dashboard CRM SENTARIS" class="tri-art-img" loading="lazy">
+          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
         </div>
         <h3>ADS Dashboard di dalam CRM.</h3>
         <p>Tahu iklan Meta mana yang jadi chat, lead, dan closing tanpa buka Ads Manager. Skor 1–10 dari pesan yang benar-benar masuk.</p>
@@ -452,13 +498,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
       </article>
       <article class="tri">
         <span class="tri-num">03</span>
-        <div class="tri-art phone" aria-hidden="true">
-          <div class="phone-body">
-            <div class="notif">Lead baru masuk</div>
-            <div class="line" style="width:85%"></div>
-            <div class="line" style="width:60%"></div>
-            <div class="line" style="width:72%"></div>
-          </div>
+        <div class="tri-art phone-art" data-zoom="Mobile friendly.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: Aplikasi Mobile SENTARIS">
+          <img src="Mobile friendly.jpg" alt="Aplikasi Mobile SENTARIS" class="tri-art-img" loading="lazy">
+          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
         </div>
         <h3>Mobile friendly.</h3>
         <p>Balas chat, pindah tahap lead, lihat skor iklan, dan terima notifikasi push. Owner memantau dari mana saja.</p>
