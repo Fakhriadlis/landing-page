@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SENTARIS — AI CRM untuk tim sales</title>
+<meta name="description" content="Semua nomor WhatsApp sales, iklan Meta, dan AI yang membalas lead dalam satu dasbor. Coba gratis 5 hari.">
+<link rel="icon" type="image/jpeg" href="2.jpeg">
+<link rel="apple-touch-icon" href="2.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   SENTARIS — Landing page
+   Palet: Midnight Navy + Electric Cyan + Royal Blue
+   Harmonisasi dengan logo resmi SENTARIS
+   ========================================================= */
+:root{
+  --bg-950:#060B18;   /* midnight navy paling gelap (latar utama) */
+  --bg-900:#0A1226;   /* cards & container dasbor */
+  --bg-800:#111E3D;   /* elevated elements */
+  --bg-700:#172A54;   /* borders & interactive hover */
+  --porcelain:#F8FAFC;/* latar terang (clean slate) */
+  --ink:#0A1128;      /* teks di latar terang */
+  --muted-d:#94A3B8;  /* teks sekunder di latar gelap */
+  --muted-l:#475569;  /* teks sekunder di latar terang */
+  --cyan:#00F2FE;     /* warna aksen segitiga logo SENTARIS */
+  --cyan-soft:#38BDF8;/* cyan/sky blue halus */
+  --cyan-line:rgba(0,242,254,.22);
+  --blue:#0054EB;     /* royal blue resmi icon SENTARIS */
+  --blue-hover:#0046C7;
+  --jade:#25D366;     /* aksen WhatsApp */
+  --sans:"Plus Jakarta Sans", "Manrope", system-ui, -apple-system, sans-serif;
+  --serif:"Plus Jakarta Sans", "Manrope", system-ui, sans-serif;
+  --wrap:1200px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(80px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg-950);color:var(--porcelain);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:84px}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.serif{font-family:var(--serif)}
+
+/* ---------- Tombol ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn-gold{background:linear-gradient(135deg,#0054EB 0%,#00C6FF 100%);color:#FFFFFF;box-shadow:0 4px 20px rgba(0,84,235,.35)}
+.btn-gold:hover{background:linear-gradient(135deg,#0046C7 0%,#00E5FF 100%);box-shadow:0 6px 28px rgba(0,242,254,.45);transform:translateY(-1px);color:#FFFFFF}
+.btn-ghost{border:1px solid rgba(248,250,252,.25);color:var(--porcelain)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,254,.06)}
+.btn-dark{background:var(--bg-950);color:var(--porcelain);border:1px solid var(--cyan-line)}
+.btn-dark:hover{background:var(--bg-800);border-color:var(--cyan);color:var(--cyan)}
+.btn svg{flex-shrink:0}
+
+/* ---------- Header ---------- */
+.header{position:sticky;top:0;z-index:40;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(6,11,24,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:rgba(0,242,254,.15)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px}
+.logo{display:inline-flex;align-items:center;text-decoration:none}
+.logo-img{height:28px;width:auto;display:block;object-fit:contain}
+@media (max-width: 520px){
+  .logo-img{height:24px}
+}
+.nav{display:flex;gap:34px}
+.nav a{text-decoration:none;font-size:15px;color:var(--muted-d);font-weight:500;transition:color .2s}
+.nav a:hover{color:var(--cyan)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.header .btn{min-height:44px;padding:0 20px;font-size:14px}
+.menu-btn{display:none;background:var(--bg-900);border:1px solid var(--cyan-line);border-radius:12px;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:all .2s ease}
+.menu-btn:hover{border-color:var(--cyan);background:var(--bg-800)}
+.menu-icon{display:flex;flex-direction:column;gap:5px;width:20px}
+.menu-icon span{display:block;height:2px;background:var(--porcelain);border-radius:2px;transition:all .25s ease}
+
+/* Drawer Mobile */
+.mobile-drawer{position:fixed;inset:0;z-index:100;display:none}
+.mobile-drawer.open{display:block}
+.mobile-drawer-backdrop{position:absolute;inset:0;background:rgba(6,11,24,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .3s ease}
+.mobile-drawer.open .mobile-drawer-backdrop{opacity:1}
+.mobile-drawer-content{position:absolute;top:0;right:0;bottom:0;width:min(340px,86vw);background:var(--bg-950);border-left:1px solid var(--cyan-line);box-shadow:-10px 0 40px rgba(0,0,0,.6);padding:24px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.16,1,.3,1);overflow-y:auto;z-index:1}
+.mobile-drawer.open .mobile-drawer-content{transform:translateX(0)}
+.mobile-drawer-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:20px;border-bottom:1px solid var(--cyan-line);margin-bottom:20px}
+.drawer-close{width:36px;height:36px;border-radius:50%;background:var(--bg-900);border:1px solid var(--cyan-line);color:var(--porcelain);display:grid;place-items:center;cursor:pointer;font-size:16px;transition:all .2s}
+.drawer-close:hover{border-color:var(--cyan);color:var(--cyan)}
+.mobile-nav-links{display:flex;flex-direction:column;gap:6px}
+.mnav-link{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;text-decoration:none;font-weight:600;font-size:16px;color:var(--porcelain);transition:all .2s}
+.mnav-link span{font-size:12px;font-weight:700;color:var(--cyan);background:rgba(0,242,254,.1);padding:2px 8px;border-radius:6px;border:1px solid var(--cyan-line)}
+.mnav-link:hover{background:var(--bg-900);color:var(--cyan)}
+.mobile-drawer-footer{margin-top:auto;padding-top:24px;border-top:1px solid var(--cyan-line);display:flex;flex-direction:column;gap:12px}
+.mnav-btn{width:100%;min-height:50px}
+.mnav-subtext{font-size:12px;color:var(--muted-d);text-align:center}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;text-align:center;padding:72px 0 0;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(65% 55% at 50% 0%,rgba(0,84,235,.28),rgba(0,242,254,.08) 50%,transparent 70%);pointer-events:none}
+.hero .wrap{position:relative}
+.pill{display:inline-block;border:1px solid var(--cyan-line);color:var(--cyan);background:rgba(0,242,254,.06);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.02em}
+.hero h1{margin:28px auto 0;max-width:16ch;font-family:var(--sans);font-weight:800;font-size:clamp(44px,7.5vw,96px);line-height:1.04;letter-spacing:-.03em}
+.hero h1 em{display:block;font-style:normal;background:linear-gradient(135deg,#00F2FE 0%,#38BDF8 50%,#0054EB 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
+.hero-q{margin:30px auto 0;max-width:30ch;font-size:clamp(19px,2vw,22px);line-height:1.45;font-weight:600}
+.hero-d{margin:12px auto 0;max-width:52ch;color:var(--muted-d)}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.assure{list-style:none;padding:0;margin:26px 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 30px;font-size:15px;color:var(--muted-d)}
+.assure li{display:flex;align-items:center;gap:10px}
+.assure li::before{content:"";width:7px;height:7px;background:var(--cyan);transform:rotate(45deg);box-shadow:0 0 8px var(--cyan)}
+
+/* Bingkai video */
+.showcase{position:relative;margin:64px auto 0;max-width:1060px;padding:14px;border:1px solid var(--cyan-line);border-bottom:none;border-radius:28px 28px 0 0;background:rgba(10,18,38,.4)}
+.showcase::before,.showcase::after{content:"";position:absolute;top:-1px;width:42px;height:42px;border-top:2px solid var(--cyan)}
+.showcase::before{left:-1px;border-left:2px solid var(--cyan);border-top-left-radius:28px}
+.showcase::after{right:-1px;border-right:2px solid var(--cyan);border-top-right-radius:28px}
+.screen{aspect-ratio:16/9;border-radius:18px 18px 0 0;overflow:hidden;background:var(--bg-900);position:relative}
+.screen video{width:100%;height:100%;object-fit:cover}
+.placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--muted-d);font-size:15px;text-align:center;padding:20px}
+.play{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#0054EB,#00F2FE);display:grid;place-items:center;color:#fff;box-shadow:0 0 30px rgba(0,242,254,.5)}
+@media (prefers-reduced-motion: no-preference){
+  .showcase{animation:rise 1.1s .2s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- Section umum ---------- */
+.sec{padding:120px 0}
+.light{background:var(--porcelain);color:var(--ink)}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 64px}
+.sec-head h2{margin:0;font-family:var(--sans);font-weight:800;font-size:clamp(36px,5vw,56px);line-height:1.08;letter-spacing:-.02em}
+.sec-head p{margin:16px 0 0;font-size:18px;color:var(--muted-l)}
+.dark .sec-head p{color:var(--muted-d)}
+
+/* ---------- Keunggulan (triptych) ---------- */
+.triptych{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(10,17,40,.12)}
+.tri{padding:40px 32px 8px;border-left:1px solid rgba(10,17,40,.12)}
+.tri:first-child{border-left:none;padding-left:0}
+.tri:last-child{padding-right:0}
+.tri-num{font-family:var(--sans);font-weight:800;font-size:22px;color:var(--blue)}
+.tri-art{margin:22px 0 28px;height:210px;border-radius:20px;background:var(--bg-950);color:var(--porcelain);padding:26px;display:flex;flex-direction:column;justify-content:center;gap:12px;overflow:hidden;border:1px solid rgba(0,242,254,.12)}
+.tri h3{margin:0;font-family:var(--sans);font-weight:700;font-size:26px;line-height:1.18}
+.tri p{margin:12px 0 0;color:var(--muted-l);font-size:16px}
+.tri .hl{display:inline-block;margin-top:18px;font-weight:700;font-size:14px;color:var(--blue);border-bottom:1px solid var(--cyan)}
+/* ilustrasi 01 */
+.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.chip{background:var(--bg-800);border:1px solid rgba(0,242,254,.12);border-radius:10px;padding:11px 10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--porcelain)}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--jade)}
+.chip.more{background:linear-gradient(135deg,#0054EB,#00C6FF);color:#FFFFFF;justify-content:center;font-weight:800;border:none}
+.chip.more::before{display:none}
+/* ilustrasi 02 */
+.bar{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted-d)}
+.bar span:first-child{width:56px}
+.bar i{height:12px;border-radius:6px;background:linear-gradient(90deg,#0054EB,#00F2FE)}
+.bar b{margin-left:auto;color:var(--porcelain);font-weight:700}
+.flow{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:12px;font-weight:700}
+.flow span{border:1px solid var(--cyan-line);color:var(--cyan);background:rgba(0,242,254,.06);padding:5px 11px;border-radius:999px}
+/* ilustrasi 03 */
+.tri-art.phone{justify-content:flex-end;align-items:center;padding-bottom:0}
+.phone-body{width:150px;height:176px;border:2px solid var(--cyan-line);border-bottom:none;border-radius:26px 26px 0 0;padding:20px 12px 0;display:flex;flex-direction:column;gap:9px}
+.notif{background:var(--porcelain);color:var(--ink);border-radius:10px;padding:9px;display:flex;gap:8px;align-items:center;font-size:11px;font-weight:700}
+.notif::before{content:"";width:20px;height:20px;border-radius:6px;background:var(--jade);flex-shrink:0}
+.line{height:8px;border-radius:4px;background:var(--bg-800)}
+
+/* ---------- Fitur detail (Feature Studio) ---------- */
+.feature-studio{margin-top:16px}
+.feature-tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.ftab{background:var(--bg-900);border:1px solid var(--cyan-line);color:var(--muted-d);padding:12px 20px;border-radius:14px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:15px;font-weight:600;transition:all .25s ease}
+.ftab:hover{border-color:var(--cyan);color:var(--porcelain);transform:translateY(-2px)}
+.ftab.active{background:linear-gradient(135deg,rgba(0,84,235,.28) 0%,rgba(0,242,254,.15) 100%);border-color:var(--cyan);color:#FFFFFF;box-shadow:0 4px 24px rgba(0,242,254,.22)}
+.ftab-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--muted-d);letter-spacing:.02em}
+.ftab.active .ftab-badge{background:var(--cyan);color:#060B18}
+
+.feature-display{position:relative}
+.fpanel{display:none}
+.fpanel.active{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:44px;align-items:center;animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.fpanel-info{padding-right:10px}
+.fpanel-info .pill{margin-bottom:14px}
+.fpanel-info h3{margin:0 0 16px;font-family:var(--sans);font-size:clamp(24px,2.6vw,34px);line-height:1.2;font-weight:800;color:#FFFFFF;letter-spacing:-.02em}
+.fpanel-info p{color:var(--muted-d);font-size:16px;line-height:1.65;margin:0 0 24px}
+.fpanel-points{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.fpanel-points li{position:relative;padding-left:30px;font-size:15px;color:#E2E8F0;line-height:1.55}
+.fpanel-points li::before{content:"✓";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:rgba(0,242,254,.15);color:var(--cyan);display:grid;place-items:center;font-size:11px;font-weight:900;border:1px solid var(--cyan-line)}
+.fpanel-points strong{color:#FFFFFF}
+
+.app-window{border:1px solid var(--cyan-line);border-radius:20px;background:var(--bg-900);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 35px rgba(0,242,254,.1);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.app-window:hover{border-color:var(--cyan);box-shadow:0 28px 70px rgba(0,0,0,.6),0 0 45px rgba(0,242,254,.2)}
+.win-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(6,11,24,.92);border-bottom:1px solid var(--cyan-line);gap:12px}
+.win-dots{display:flex;gap:7px;align-items:center}
+.wdot{width:10px;height:10px;border-radius:50%}
+.wdot.red{background:#FF5F56}
+.wdot.yellow{background:#FFBD2E}
+.wdot.green{background:#27C93F}
+.win-title{font-size:12px;color:var(--muted-d);display:flex;align-items:center;gap:7px;font-family:monospace}
+.win-zoom-btn{background:rgba(0,242,254,.1);color:var(--cyan);border:1px solid var(--cyan-line);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:var(--sans)}
+.win-zoom-btn:hover{background:var(--cyan);color:#060B18}
+.win-body{position:relative;cursor:zoom-in;background:#060B18;overflow:hidden}
+.win-img{width:100%;height:auto;display:block;aspect-ratio:1600/950;object-fit:contain;background:#060B18;transition:transform .4s ease;image-rendering:-webkit-optimize-contrast}
+.win-body:hover .win-img{transform:scale(1.02)}
+.win-overlay{position:absolute;inset:0;background:rgba(6,11,24,.4);opacity:0;display:grid;place-items:center;transition:opacity .25s ease;pointer-events:none}
+.win-overlay span{background:rgba(6,11,24,.92);border:1px solid var(--cyan);color:var(--cyan);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.6)}
+.win-body:hover .win-overlay{opacity:1}
+
+/* ---------- Banner penawaran ---------- */
+.offer{background:linear-gradient(135deg,#002B8A 0%,#0054EB 50%,#00AEEF 100%);color:#FFFFFF;box-shadow:0 10px 40px rgba(0,84,235,.2)}
+.offer .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-top:56px;padding-bottom:56px}
+.offer h2{margin:0;font-family:var(--sans);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.08;color:#FFFFFF}
+.offer p{margin:8px 0 0;font-weight:500;color:rgba(255,255,255,.9)}
+.offer .btn-dark{background:#060B18;color:#FFFFFF;border:1px solid rgba(0,242,254,.4);box-shadow:0 8px 24px rgba(6,11,24,.4)}
+.offer .btn-dark:hover{background:var(--bg-800);border-color:var(--cyan);color:var(--cyan)}
+
+/* ---------- Kredibilitas ---------- */
+.founder{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:72px;align-items:center}
+.kicker{font-weight:700;color:var(--blue);font-size:15px;letter-spacing:.05em;text-transform:uppercase}
+.founder blockquote{margin:20px 0 0;font-family:var(--sans);font-weight:500;font-style:normal;font-size:clamp(22px,2.5vw,32px);line-height:1.35;letter-spacing:-.01em;color:var(--ink)}
+.who{margin-top:26px;font-size:15px;color:var(--muted-l)}
+.who strong{display:block;color:var(--ink);font-size:17px;font-weight:700}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:200px 200px 24px 24px;overflow:hidden;background:#E2E8F0;outline:2px solid var(--cyan);outline-offset:10px}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .placeholder{color:var(--muted-l)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:96px;border-top:1px solid rgba(10,17,40,.12)}
+.stat{padding:34px 24px 0;border-left:1px solid rgba(10,17,40,.12)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat b{display:block;font-family:var(--sans);font-weight:800;font-size:clamp(44px,5vw,68px);line-height:1;color:var(--blue);letter-spacing:-.02em}
+.stat span{display:block;margin-top:10px;color:var(--muted-l);font-size:15px}
+
+/* ---------- Testimoni ---------- */
+/* ---------- Testimoni ---------- */
+.testi-slider-wrap{position:relative}
+.testi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.testi-hint{display:none;text-align:center;font-size:13px;color:var(--cyan);margin-bottom:14px;font-weight:600}
+.testi-controls{display:none;align-items:center;justify-content:center;gap:16px;margin-top:24px}
+.t-arrow{width:40px;height:40px;border-radius:50%;background:var(--bg-900);border:1px solid var(--cyan-line);color:var(--porcelain);font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.t-arrow:hover{border-color:var(--cyan);color:var(--cyan);background:var(--bg-800)}
+.testi-dots{display:flex;gap:8px}
+.tdot{width:8px;height:8px;border-radius:4px;background:rgba(255,255,255,.2);transition:all .25s ease;cursor:pointer}
+.tdot.active{width:24px;background:var(--cyan)}
+
+.shot{display:block;width:100%;padding:0;border:none;background:none;cursor:zoom-in;color:inherit;font:inherit;text-align:left}
+.shot-frame{position:relative;aspect-ratio:9/16;border-radius:34px;border:1px solid var(--cyan-line);padding:10px;background:var(--bg-900);transition:border-color .2s,box-shadow .2s}
+.shot:hover .shot-frame{border-color:var(--cyan);box-shadow:0 0 25px rgba(0,242,254,.25)}
+.shot-inner{position:relative;width:100%;height:100%;border-radius:26px;overflow:hidden;background:var(--bg-800)}
+.shot-inner img{width:100%;height:100%;object-fit:cover;object-position:top}
+.meta{margin-top:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stars{color:#F59E0B;letter-spacing:3px}
+.ver{font-size:12px;font-weight:700;color:var(--cyan);border:1px solid var(--cyan-line);background:rgba(0,242,254,.08);padding:3px 10px;border-radius:999px}
+.testi h3{margin:10px 0 0;font-family:var(--sans);font-weight:700;font-size:22px;line-height:1.25}
+
+dialog{border:none;padding:0;background:transparent;max-width:min(1200px,94vw);max-height:94vh}
+dialog::backdrop{background:rgba(6,11,24,.88);backdrop-filter:blur(8px)}
+dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:auto;margin:0 auto;display:block}
+.dlg-ph{width:min(400px,90vw);aspect-ratio:9/16;border-radius:24px;background:var(--bg-900);border:1px solid var(--cyan-line);display:grid;place-items:center;color:var(--muted-d)}
+.close{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:48px;height:48px;border-radius:50%;border:1px solid var(--cyan-line);background:var(--bg-950);color:var(--porcelain);font-size:22px;cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.close:hover{background:var(--bg-800);border-color:var(--cyan);color:var(--cyan)}
+
+/* ---------- CTA akhir ---------- */
+.final{text-align:center;padding:140px 0;background:radial-gradient(55% 65% at 50% 100%,rgba(0,84,235,.28),rgba(0,242,254,.08) 50%,transparent 70%)}
+.final h2{margin:0;font-family:var(--sans);font-weight:800;font-size:clamp(44px,7vw,88px);line-height:1.04;letter-spacing:-.02em}
+.final p{margin:20px auto 0;max-width:40ch;color:var(--muted-d);font-size:18px}
+.final .btn{margin-top:36px;min-height:60px;padding:0 36px;font-size:17px}
+
+/* ---------- Footer & sticky ---------- */
+.footer{border-top:1px solid var(--cyan-line);padding:56px 0 44px;color:var(--muted-d);font-size:15px;background:var(--bg-950)}
+.footer-wrap{display:grid;grid-template-columns:1.5fr 2fr 1.2fr;gap:32px;align-items:center}
+.footer-brand{display:flex;flex-direction:column;gap:10px}
+.footer-tagline{margin:0;font-size:14px;color:var(--muted-d);max-width:32ch;line-height:1.5}
+.footer-nav{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.footer-nav a{text-decoration:none;color:var(--muted-d);font-size:14px;font-weight:500;transition:color .2s}
+.footer-nav a:hover{color:var(--cyan)}
+.footer-copy{font-size:13px;color:var(--muted-d);text-align:right}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(6,11,24,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--cyan-line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.sticky .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.sticky .btn{min-height:48px;padding:0 24px;font-size:15px;margin-left:auto}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 960px){
+  .nav{display:none}
+  .menu-btn{display:inline-flex}
+  .triptych{grid-template-columns:minmax(0,1fr)}
+  .tri,.tri:first-child,.tri:last-child{padding:36px 0 8px;border-left:none;border-top:1px solid rgba(10,17,40,.12)}
+  .tri:first-child{border-top:none}
+  .fpanel.active{grid-template-columns:minmax(0,1fr);gap:32px}
+  .feature-tabs{justify-content:flex-start;overflow-x:auto;padding-bottom:12px;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  .ftab{flex-shrink:0}
+  .founder{grid-template-columns:minmax(0,1fr);gap:56px}
+  .portrait{max-width:340px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){border-left:none;padding-left:0}
+  
+  /* WhatsApp Slider horizontal di mobile */
+  .testi{
+    display:flex;
+    grid-template-columns:none;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:18px;
+    padding:8px 24px 20px;
+    margin:0 -24px;
+    scrollbar-width:none;
+    max-width:none;
+  }
+  .testi::-webkit-scrollbar{display:none}
+  .testi article{
+    flex:0 0 280px;
+    max-width:280px;
+    scroll-snap-align:center;
+  }
+  .testi-hint{display:block}
+  .testi-controls{display:flex}
+  
+  .sec{padding:88px 0}
+  .sticky-text{display:none}
+  
+  /* Footer Mobile */
+  .footer{padding:44px 0 130px}
+  .footer-wrap{grid-template-columns:1fr;text-align:center;gap:20px;justify-items:center}
+  .footer-brand{align-items:center}
+  .footer-tagline{max-width:none}
+  .footer-nav{justify-content:center;gap:12px 18px}
+  .footer-copy{text-align:center}
+}
+
+@media (max-width: 640px){
+  body{padding-bottom:96px}
+  .sticky .wrap{padding:10px 16px;justify-content:center}
+  .sticky .btn{width:100%;max-width:440px;margin:0 auto;min-height:50px;font-size:15px;box-shadow:0 4px 25px rgba(0,84,235,.4)}
+}
+
+@media (max-width: 520px){
+  .header-cta span{display:none}
+  .header-cta{min-height:44px;width:44px;padding:0;border-radius:12px}
+  .stat{padding:28px 14px 0}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- =================== HEADER =================== -->
+<header class="header" id="header">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="SENTARIS, ke atas"><img src="1_dark.png" alt="SENTARIS" class="logo-img"></a>
+    <nav class="nav" aria-label="Menu utama">
+      <a href="#fitur">Fitur utama</a>
+      <a href="#kenapa">Kenapa SENTARIS</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#coba">Coba gratis</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-gold wa-link header-cta" href="#" aria-label="Coba Gratis 5 Hari">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        <span>Coba Gratis 5 Hari</span>
+      </a>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-label="Buka navigasi menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-backdrop" id="drawer-backdrop"></div>
+  <div class="mobile-drawer-content">
+    <div class="mobile-drawer-head">
+      <a href="#top" class="logo" aria-label="SENTARIS"><img src="1_dark.png" alt="SENTARIS" class="logo-img"></a>
+      <button class="drawer-close" id="drawer-close" type="button" aria-label="Tutup menu">✕</button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Navigasi Menu Mobile">
+      <a href="#top" class="mnav-link"><span>01</span> Beranda</a>
+      <a href="#fitur" class="mnav-link"><span>02</span> Fitur Utama</a>
+      <a href="#kenapa" class="mnav-link"><span>03</span> Kenapa SENTARIS</a>
+      <a href="#testimoni" class="mnav-link"><span>04</span> Testimoni WhatsApp</a>
+      <a href="https://playbook.sentaris.cloud/" target="_blank" rel="noopener" class="mnav-link"><span>05</span> Demo Playbook ↗</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a class="btn btn-gold wa-link mnav-btn" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        Coba Gratis 5 Hari
+      </a>
+      <div class="mnav-subtext">Onboarding instan di hari yang sama • Bebas batal</div>
+    </div>
+  </div>
+</aside>
+
+<main>
+<!-- =================== HERO =================== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="pill">CRM + AI untuk tim sales</span>
+    <h1>Nomor 1 AI CRM <em>Content + Ads + Sales</em> dalam 1 dashboard</h1>
+    <p class="hero-q">Siapkah tim sales Anda membalas, membagi, dan mencatat setiap lead dalam hitungan detik?</p>
+    <p class="hero-d">Semua nomor WhatsApp sales, iklan Meta terukur sampai closing, dan AI yang membalas lead — di satu dasbor.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold wa-link" href="#">Coba Gratis 5 Hari</a>
+      <a class="btn btn-ghost" href="https://playbook.sentaris.cloud" target="_blank" rel="noopener">Lihat demo, tanpa daftar</a>
+    </div>
+    <ul class="assure">
+      <li>Gratis 5 hari</li>
+      <li>Onboarding di hari yang sama</li>
+      <li>Berhenti kapan saja</li>
+    </ul>
+
+    <div class="showcase">
+      <div class="screen">
+        <!-- [GANTI] Video dasbor. Hapus div.placeholder lalu aktifkan baris video di bawah:
+        <video src="video/demo-sentaris.mp4" poster="images/poster-video.jpg" autoplay muted loop playsinline></video>
+        -->
+        <video src="SENTARIS LAUNCH.mp4" poster="images/poster-video.jpg" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== KEUNGGULAN =================== -->
+<section class="sec light" id="fitur">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Tiga hal yang tidak diberikan CRM lain.</h2>
+      <p>Bukan daftar fitur panjang. Tiga yang langsung terasa di minggu pertama.</p>
+    </div>
+    <div class="triptych">
+      <article class="tri">
+        <span class="tri-num">01</span>
+        <div class="tri-art" aria-hidden="true">
+          <div class="chips">
+            <span class="chip">Sales 01</span><span class="chip">Sales 02</span><span class="chip">Sales 03</span>
+            <span class="chip">Sales 04</span><span class="chip">Sales 05</span><span class="chip more">50+</span>
+          </div>
+        </div>
+        <h3>Nomor WhatsApp tanpa batas.</h3>
+        <p>5 atau 50 nomor sales masuk satu dasbor. Sales tetap pakai WhatsApp di HP; leader melihat semuanya tanpa pinjam HP siapa pun.</p>
+        <span class="hl">50+ nomor aktif di satu dasbor hari ini</span>
+      </article>
+      <article class="tri">
+        <span class="tri-num">02</span>
+        <div class="tri-art" aria-hidden="true">
+          <div class="bar"><span>Iklan A</span><i style="width:62%"></i><b>9/10</b></div>
+          <div class="bar"><span>Iklan B</span><i style="width:42%"></i><b>6/10</b></div>
+          <div class="bar"><span>Iklan C</span><i style="width:20%"></i><b>3/10</b></div>
+          <div class="flow"><span>Chat</span><span>Lead</span><span>Closing</span></div>
+        </div>
+        <h3>ADS Dashboard di dalam CRM.</h3>
+        <p>Tahu iklan Meta mana yang jadi chat, lead, dan closing tanpa buka Ads Manager. Skor 1–10 dari pesan yang benar-benar masuk.</p>
+        <span class="hl">Belanja iklan ↔ chat masuk, satu layar</span>
+      </article>
+      <article class="tri">
+        <span class="tri-num">03</span>
+        <div class="tri-art phone" aria-hidden="true">
+          <div class="phone-body">
+            <div class="notif">Lead baru masuk</div>
+            <div class="line" style="width:85%"></div>
+            <div class="line" style="width:60%"></div>
+            <div class="line" style="width:72%"></div>
+          </div>
+        </div>
+        <h3>Mobile friendly.</h3>
+        <p>Balas chat, pindah tahap lead, lihat skor iklan, dan terima notifikasi push. Owner memantau dari mana saja.</p>
+        <span class="hl">iPhone &amp; Android, notifikasi push</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FITUR DETAIL (galeri) =================== -->
+<section class="sec dark" id="kenapa">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Semua yang tim sales butuhkan, dalam satu layar.</h2>
+    </div>
+    <!-- [GANTI] Ganti tiap div.placeholder dengan <img src="images/fitur-x.jpg" alt="Nama fitur"> -->
+    <div class="feature-studio">
+      <!-- Navigasi Tabs Fitur -->
+      <div class="feature-tabs" role="tablist" aria-label="Pilihan Fitur SENTARIS">
+        <button class="ftab active" type="button" role="tab" data-tab="0" aria-selected="true">
+          <span>💬</span>
+          <span>Chat Saya</span>
+          <span class="ftab-badge">50+ Nomor</span>
+        </button>
+        <button class="ftab" type="button" role="tab" data-tab="1" aria-selected="false">
+          <span>🤖</span>
+          <span>Horus AI</span>
+          <span class="ftab-badge">24 Jam</span>
+        </button>
+        <button class="ftab" type="button" role="tab" data-tab="2" aria-selected="false">
+          <span>⚡</span>
+          <span>Auto Follow-Up</span>
+          <span class="ftab-badge">Anti Ghosting</span>
+        </button>
+        <button class="ftab" type="button" role="tab" data-tab="3" aria-selected="false">
+          <span>📊</span>
+          <span>ADS Dashboard</span>
+          <span class="ftab-badge">Meta to ROAS</span>
+        </button>
+        <button class="ftab" type="button" role="tab" data-tab="4" aria-selected="false">
+          <span>👥</span>
+          <span>Papan Sales</span>
+          <span class="ftab-badge">Monitoring Tim</span>
+        </button>
+      </div>
+
+      <!-- Showcase Display -->
+      <div class="feature-display">
+        <!-- Panel 0: Chat Saya -->
+        <div class="fpanel active" data-panel="0">
+          <div class="fpanel-info">
+            <span class="pill">WhatsApp Multi-Nomor</span>
+            <h3>Semua chat dari 50+ nomor sales, rapi dalam satu kanban dasbor</h3>
+            <p>Sales tetap membalas dari HP masing-masing di lapangan. Pemilik dan leader bisnis dapat memantau, memindahkan tahap lead, dan melihat seluruh riwayat percakapan secara langsung tanpa meminjam HP siapa pun.</p>
+            <ul class="fpanel-points">
+              <li><strong>50+ nomor WhatsApp aktif</strong> terhubung bersamaan dalam satu layar</li>
+              <li><strong>Kanban visual drag-and-drop:</strong> Baru → Hot Leads → Closing</li>
+              <li><strong>Riwayat aman di cloud:</strong> chat tidak hilang saat HP sales rusak atau ganti orang</li>
+            </ul>
+          </div>
+          <div class="fpanel-media">
+            <div class="app-window">
+              <div class="win-header">
+                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
+                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/chat-saya</div>
+                <button class="win-zoom-btn" type="button" data-zoom="fitur1.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
+              </div>
+              <div class="win-body" data-zoom="fitur1.jpg">
+                <img src="fitur1.jpg" alt="Dasbor Chat Saya SENTARIS" class="win-img" loading="eager">
+                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 1: Horus AI -->
+        <div class="fpanel" data-panel="1">
+          <div class="fpanel-info">
+            <span class="pill">AI Sales Assistant 24 Jam</span>
+            <h3>Horus AI: Membalas calon pembeli dalam hitungan detik dengan 5 persona cerdas</h3>
+            <p>Jangan biarkan lead dari iklan menguap karena chat masuk larut malam. Horus AI merespons dengan sopan, akurat sesuai data produk Anda, dan tidak pernah mengarang harga.</p>
+            <ul class="fpanel-points">
+              <li><strong>5 Gaya persona:</strong> Suggestive, Straight to Point, Consultative, Closing, &amp; Professional</li>
+              <li><strong>Respon secepat kilat:</strong> membalas lead kurang dari 5 detik secara alami</li>
+              <li><strong>Serah terima mulus:</strong> esok paginya tim sales tinggal melanjutkan tanpa mengulang</li>
+            </ul>
+          </div>
+          <div class="fpanel-media">
+            <div class="app-window">
+              <div class="win-header">
+                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
+                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/horus-ai</div>
+                <button class="win-zoom-btn" type="button" data-zoom="fitur2.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
+              </div>
+              <div class="win-body" data-zoom="fitur2.jpg">
+                <img src="fitur2.jpg" alt="Dasbor Horus AI SENTARIS" class="win-img" loading="lazy">
+                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Auto Follow-Up -->
+        <div class="fpanel" data-panel="2">
+          <div class="fpanel-info">
+            <span class="pill">Otomatisasi Follow-Up</span>
+            <h3>Auto Follow-Up: Tidak ada lagi lead terlantar atau sales lupa menyusul</h3>
+            <p>Sebagian besar closing terjadi di follow-up ke-3 dan ke-4. SENTARIS mengirimkan pesan susulan otomatis yang terjadwal rapi dan berhenti sendiri ketika prospek sudah menjawab.</p>
+            <ul class="fpanel-points">
+              <li><strong>Kustomisasi interval:</strong> atur jeda kirim otomatis (1 hari, 2 hari, dll)</li>
+              <li><strong>Anti-spam cerdas:</strong> otomatis berhenti begitu pelanggan mengetik balasan</li>
+              <li><strong>Tingkatkan omzet sales</strong> hingga 30–45% tanpa menambah jumlah tim</li>
+            </ul>
+          </div>
+          <div class="fpanel-media">
+            <div class="app-window">
+              <div class="win-header">
+                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
+                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/auto-follow-up</div>
+                <button class="win-zoom-btn" type="button" data-zoom="fitur3.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
+              </div>
+              <div class="win-body" data-zoom="fitur3.jpg">
+                <img src="fitur3.jpg" alt="Dasbor Auto Follow Up SENTARIS" class="win-img" loading="lazy">
+                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: ADS Dashboard -->
+        <div class="fpanel" data-panel="3">
+          <div class="fpanel-info">
+            <span class="pill">Meta Ads Attribution</span>
+            <h3>ADS Dashboard CRM: Tahu persis iklan mana yang menghasilkan uang</h3>
+            <p>Bukan sekadar CPC atau ROAS estimasi di Ads Manager. SENTARIS mencocokkan setiap rupiah biaya iklan langsung dengan chat WhatsApp masuk, pengisian lead, hingga closing riil.</p>
+            <ul class="fpanel-points">
+              <li><strong>Full funnel attribution:</strong> Impresi Meta → Chat Masuk → Lead → Closing</li>
+              <li><strong>Skor respon 1–10:</strong> ketahui iklan yang menarik pembeli asli vs leads abal-abal</li>
+              <li><strong>Hemat budget iklan:</strong> matikan iklan boncos, scale iklan yang terbukti closing</li>
+            </ul>
+          </div>
+          <div class="fpanel-media">
+            <div class="app-window">
+              <div class="win-header">
+                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
+                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/ads-dashboard</div>
+                <button class="win-zoom-btn" type="button" data-zoom="fitur4.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
+              </div>
+              <div class="win-body" data-zoom="fitur4.jpg">
+                <img src="fitur4.jpg" alt="Dasbor ADS Tracking SENTARIS" class="win-img" loading="lazy">
+                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: Papan per Nomor Sales -->
+        <div class="fpanel" data-panel="4">
+          <div class="fpanel-info">
+            <span class="pill">Transparansi Tim Sales</span>
+            <h3>Papan per Nomor Sales: Pantau kecepatan balas &amp; beban tiap salesperson</h3>
+            <p>Lihat status koneksi WhatsApp seluruh tim sales Anda (Agatha, Alif, Amel, Arfin, dll) dalam satu tampilan. Deteksi sales yang terlambat membalas lead baru dan cegah penumpukan chat.</p>
+            <ul class="fpanel-points">
+              <li><strong>Status online real-time:</strong> 52 nomor terhubung aktif terdata transparan</li>
+              <li><strong>Peringatan chat lambat:</strong> tandai lead yang belum dibalas &gt; 30 menit</li>
+              <li><strong>Bagi lead merata:</strong> optimalkan pembagian prospek agar closing maksimal</li>
+            </ul>
+          </div>
+          <div class="fpanel-media">
+            <div class="app-window">
+              <div class="win-header">
+                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
+                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/papan-sales</div>
+                <button class="win-zoom-btn" type="button" data-zoom="fitur5.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
+              </div>
+              <div class="win-body" data-zoom="fitur5.jpg">
+                <img src="fitur5.jpg" alt="Dasbor Papan Nomor Sales SENTARIS" class="win-img" loading="lazy">
+                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== BANNER PENAWARAN =================== -->
+<section class="offer">
+  <div class="wrap">
+    <div>
+      <h2>Coba gratis 5 hari, tanpa risiko</h2>
+      <p>Onboarding di hari yang sama. Berhenti kapan saja.</p>
+    </div>
+    <a class="btn btn-dark wa-link" href="#">Coba Gratis 5 Hari</a>
+  </div>
+</section>
+
+<!-- =================== KREDIBILITAS =================== -->
+<section class="sec light" id="kenapa">
+  <div class="wrap">
+    <div class="founder">
+      <div>
+        <span class="kicker">Dibangun oleh tim yang memakainya sendiri</span>
+        <blockquote>“SENTARIS lahir karena tim sales kami tumbuh sampai 60 orang dan tidak ada CRM yang sanggup mengikuti WhatsApp kami. Sekarang setiap chat, iklan, dan lead ada di satu layar — dan saya bisa memantaunya dari HP.”</blockquote>
+        <p class="who"><strong>Jefferson Noah</strong>Founder SENTARIS, Digital Marketing Specialist</p>
+      </div>
+      <div class="portrait">
+        <img src="tim.jpg" alt="Tim Sales SENTARIS" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>60</b><span>salesperson di tim kami</span></div>
+      <div class="stat"><b>50+</b><span>nomor WhatsApp dalam satu dasbor</span></div>
+      <div class="stat"><b>5.000+</b><span>chat dari iklan per bulan</span></div>
+      <div class="stat"><b>1 hari</b><span>onboarding room baru, di hari yang sama</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TESTIMONI =================== -->
+<section class="sec dark" id="testimoni">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Bukti nyata dari pemilik bisnis &amp; tim sales</h2>
+      <p>Tangkapan layar asli dari WhatsApp klien aktif SENTARIS. Klik foto untuk melihat chat lengkap.</p>
+    </div>
+    
+    <div class="testi-slider-wrap">
+      <div class="testi-hint">👆 Geser ke samping untuk melihat bukti chat lainnya →</div>
+      <div class="testi" id="testi-slider">
+        <article>
+          <button class="shot" type="button" data-full="WhatsApp1.jpg" aria-label="Lihat chat lengkap: Tracking iklan Meta sampai closing">
+            <div class="shot-frame"><div class="shot-inner"><img src="WhatsApp1.jpg" alt="Screenshot chat Horus AI" loading="lazy"></div></div>
+          </button>
+          <div class="meta"><span class="stars" aria-label="5 dari 5 bintang">★★★★★</span><span class="ver">Terverifikasi</span></div>
+          <h3>Tracking Iklan Meta s/d Closing</h3>
+        </article>
+        <article>
+          <button class="shot" type="button" data-full="WhatsApp2.jpg" aria-label="Lihat chat lengkap: Lead auto-transfer dan anti nganggur">
+            <div class="shot-frame"><div class="shot-inner"><img src="WhatsApp2.jpg" alt="Screenshot chat lead transfer" loading="lazy"></div></div>
+          </button>
+          <div class="meta"><span class="stars" aria-label="5 dari 5 bintang">★★★★★</span><span class="ver">Terverifikasi</span></div>
+          <h3>Lead Auto-Transfer &amp; Anti Nganggur</h3>
+        </article>
+        <article>
+          <button class="shot" type="button" data-full="WhatsApp3.jpg" aria-label="Lihat chat lengkap: Horus AI 24 jam">
+            <div class="shot-frame"><div class="shot-inner"><img src="WhatsApp3.jpg" alt="Screenshot chat CS WhatsApp" loading="lazy"></div></div>
+          </button>
+          <div class="meta"><span class="stars" aria-label="5 dari 5 bintang">★★★★★</span><span class="ver">Terverifikasi</span></div>
+          <h3>Horus AI 24 Jam</h3>
+        </article>
+      </div>
+
+      <div class="testi-controls">
+        <button class="t-arrow" id="t-prev" type="button" aria-label="Testimoni sebelumnya">‹</button>
+        <div class="testi-dots" id="testi-dots">
+          <span class="tdot active" data-index="0" aria-label="Slide 1"></span>
+          <span class="tdot" data-index="1" aria-label="Slide 2"></span>
+          <span class="tdot" data-index="2" aria-label="Slide 3"></span>
+        </div>
+        <button class="t-arrow" id="t-next" type="button" aria-label="Testimoni berikutnya">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CTA AKHIR =================== -->
+<section class="final" id="coba">
+  <div class="wrap">
+    <h2>Mulai coba gratis 5 hari</h2>
+    <p>Kami pasang room untuk tim Anda, chat pertama masuk hari itu juga.</p>
+    <a class="btn btn-gold wa-link" href="#">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+      Coba Gratis 5 Hari
+    </a>
+  </div>
+</section>
+</main>
+
+<!-- =================== FOOTER =================== -->
+<footer class="footer">
+  <div class="wrap footer-wrap">
+    <div class="footer-brand">
+      <a href="#top" class="logo" aria-label="SENTARIS, ke atas"><img src="1_dark.png" alt="SENTARIS" class="logo-img"></a>
+      <p class="footer-tagline">CRM + AI untuk tim sales, integrasi WhatsApp &amp; Meta Ads dalam satu dasbor terpadu.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Navigasi Footer">
+      <a href="#fitur">Fitur Utama</a>
+      <a href="#kenapa">Kenapa SENTARIS</a>
+      <a href="#testimoni">Testimoni</a>
+      <a class="wa-link" href="#">WhatsApp CS</a>
+      <a href="https://playbook.sentaris.cloud/" target="_blank" rel="noopener">Demo Playbook</a>
+    </nav>
+    <div class="footer-copy">
+      <span>© 2026 SENTARIS. Hak cipta dilindungi.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =================== STICKY BAR =================== -->
+<div class="sticky">
+  <div class="wrap">
+    <span class="sticky-text">Coba gratis 5 hari, onboarding di hari yang sama</span>
+    <a class="btn btn-gold wa-link" href="#">Coba Gratis 5 Hari</a>
+  </div>
+</div>
+
+<dialog id="viewer" aria-label="Chat lengkap">
+  <button class="close" type="button" aria-label="Tutup">×</button>
+  <div id="viewer-body"></div>
+</dialog>
+
+<script>
+  /* Nomor & pesan WhatsApp — ubah di sini saja */
+  const WA_NUMBER = "6281231333316";
+  const WA_TEXT = "Halo SENTARIS, saya mau coba gratis 5 hari";
+  const waUrl = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
+  document.querySelectorAll(".wa-link").forEach(a => {
+    a.href = waUrl; a.target = "_blank"; a.rel = "noopener";
+  });
+
+  /* Header jadi solid saat scroll */
+  const header = document.getElementById("header");
+  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 20);
+  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* Lightbox testimoni & fitur */
+  const dlg = document.getElementById("viewer");
+  const body = document.getElementById("viewer-body");
+  document.querySelectorAll(".shot").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const full = btn.dataset.full || (btn.querySelector("img") || {}).src;
+      body.innerHTML = "";
+      if (full) {
+        const img = document.createElement("img");
+        img.src = full; img.alt = btn.getAttribute("aria-label");
+        body.appendChild(img);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "dlg-ph"; ph.textContent = "Chat lengkap tampil di sini";
+        body.appendChild(ph);
+      }
+      dlg.showModal();
+    });
+  });
+  dlg.querySelector(".close").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+  /* Feature Tabs Switcher */
+  const ftabs = document.querySelectorAll(".ftab");
+  const fpanels = document.querySelectorAll(".fpanel");
+  ftabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.tab;
+      ftabs.forEach(t => {
+        const isActive = t === tab;
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-selected", isActive);
+      });
+      fpanels.forEach(p => {
+        p.classList.toggle("active", p.dataset.panel === target);
+      });
+    });
+  });
+
+  /* Feature Lightbox Zoom */
+  document.querySelectorAll("[data-zoom]").forEach(el => {
+    el.addEventListener("click", e => {
+      e.stopPropagation();
+      const src = el.dataset.zoom;
+      if (src) {
+        body.innerHTML = "";
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Tampilan Dasbor Resolusi Penuh";
+        body.appendChild(img);
+        dlg.showModal();
+      }
+    });
+  });
+
+  /* Drawer Mobile Navigation */
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  const drawerClose = document.getElementById("drawer-close");
+  const drawerBackdrop = document.getElementById("drawer-backdrop");
+
+  function openDrawer() {
+    if (!mobileDrawer) return;
+    mobileDrawer.classList.add("open");
+    mobileDrawer.setAttribute("aria-hidden", "false");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    if (!mobileDrawer) return;
+    mobileDrawer.classList.remove("open");
+    mobileDrawer.setAttribute("aria-hidden", "true");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  if (menuToggle) menuToggle.addEventListener("click", openDrawer);
+  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
+  if (drawerBackdrop) drawerBackdrop.addEventListener("click", closeDrawer);
+  document.querySelectorAll(".mobile-drawer .mnav-link, .mobile-drawer .wa-link").forEach(link => {
+    link.addEventListener("click", closeDrawer);
+  });
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape" && mobileDrawer && mobileDrawer.classList.contains("open")) {
+      closeDrawer();
+    }
+  });
+
+  /* Testimonial Mobile Slider Controls */
+  const testiSlider = document.getElementById("testi-slider");
+  const tPrev = document.getElementById("t-prev");
+  const tNext = document.getElementById("t-next");
+  const tdots = document.querySelectorAll(".tdot");
+
+  if (testiSlider) {
+    const getScrollStep = () => {
+      const card = testiSlider.querySelector("article");
+      return card ? card.offsetWidth + 18 : 300;
+    };
+
+    if (tPrev) {
+      tPrev.addEventListener("click", () => {
+        testiSlider.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+      });
+    }
+
+    if (tNext) {
+      tNext.addEventListener("click", () => {
+        testiSlider.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+      });
+    }
+
+    tdots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        testiSlider.scrollTo({ left: idx * getScrollStep(), behavior: "smooth" });
+      });
+    });
+
+    testiSlider.addEventListener("scroll", () => {
+      const step = getScrollStep();
+      const currentIdx = Math.round(testiSlider.scrollLeft / step);
+      tdots.forEach((dot, idx) => {
+        dot.classList.toggle("active", idx === currentIdx);
+      });
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>
