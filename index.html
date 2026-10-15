@@ -158,18 +158,20 @@ a{color:inherit}
   box-shadow:0 16px 36px rgba(0,84,235,.28),0 0 22px rgba(0,242,254,.2);
   transform:translateY(-3px);
 }
-.tri-art-img{
+.tri-art-video, .tri-art-img{
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:top center;
   transition:transform .35s ease;
   display:block;
+  pointer-events:none;
 }
 .tri-art.phone-art{
   background:radial-gradient(ellipse at center, rgba(0,84,235,.22) 0%, #060B18 80%);
   padding:12px;
 }
+.tri-art.phone-art .tri-art-video,
 .tri-art.phone-art .tri-art-img{
   width:auto;
   height:100%;
@@ -179,6 +181,7 @@ a{color:inherit}
   box-shadow:0 8px 24px rgba(0,0,0,.6);
   border:1px solid rgba(0,242,254,.25);
 }
+.tri-art:hover .tri-art-video,
 .tri-art:hover .tri-art-img{
   transform:scale(1.03);
 }
@@ -202,6 +205,9 @@ a{color:inherit}
   font-size:12px;
   font-weight:700;
   box-shadow:0 4px 16px rgba(0,0,0,.6);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
 }
 .tri-art:hover .tri-art-overlay{
   opacity:1;
@@ -233,23 +239,61 @@ a{color:inherit}
 .fpanel-points li::before{content:"✓";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:rgba(0,242,254,.15);color:var(--cyan);display:grid;place-items:center;font-size:11px;font-weight:900;border:1px solid var(--cyan-line)}
 .fpanel-points strong{color:#FFFFFF}
 
-.app-window{border:1px solid var(--cyan-line);border-radius:20px;background:var(--bg-900);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 35px rgba(0,242,254,.1);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
-.app-window:hover{border-color:var(--cyan);box-shadow:0 28px 70px rgba(0,0,0,.6),0 0 45px rgba(0,242,254,.2)}
-.win-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(6,11,24,.92);border-bottom:1px solid var(--cyan-line);gap:12px}
-.win-dots{display:flex;gap:7px;align-items:center}
-.wdot{width:10px;height:10px;border-radius:50%}
-.wdot.red{background:#FF5F56}
-.wdot.yellow{background:#FFBD2E}
-.wdot.green{background:#27C93F}
-.win-title{font-size:12px;color:var(--muted-d);display:flex;align-items:center;gap:7px;font-family:monospace}
-.win-zoom-btn{background:rgba(0,242,254,.1);color:var(--cyan);border:1px solid var(--cyan-line);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:var(--sans)}
-.win-zoom-btn:hover{background:var(--cyan);color:#060B18}
-.win-body{position:relative;cursor:zoom-in;background:#060B18;overflow:hidden}
-.win-img{width:100%;height:auto;display:block;aspect-ratio:1600/950;object-fit:contain;background:#060B18;transition:transform .4s ease;image-rendering:-webkit-optimize-contrast}
-.win-body:hover .win-img{transform:scale(1.02)}
-.win-overlay{position:absolute;inset:0;background:rgba(6,11,24,.4);opacity:0;display:grid;place-items:center;transition:opacity .25s ease;pointer-events:none}
-.win-overlay span{background:rgba(6,11,24,.92);border:1px solid var(--cyan);color:var(--cyan);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.6)}
-.win-body:hover .win-overlay{opacity:1}
+.app-window{
+  border:1px solid var(--cyan-line);
+  border-radius:20px;
+  background:#060B18;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 35px rgba(0,242,254,.12);
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  position:relative;
+  cursor:zoom-in;
+}
+.app-window:hover{
+  border-color:var(--cyan);
+  box-shadow:0 28px 70px rgba(0,0,0,.6),0 0 45px rgba(0,242,254,.25);
+  transform:translateY(-2px);
+}
+.win-img{
+  width:100%;
+  height:auto;
+  display:block;
+  aspect-ratio:1600/950;
+  object-fit:cover;
+  object-position:top center;
+  background:#060B18;
+  transition:transform .4s ease;
+  image-rendering:-webkit-optimize-contrast;
+}
+.app-window:hover .win-img{
+  transform:scale(1.02);
+}
+.win-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(6,11,24,.4);
+  opacity:0;
+  display:grid;
+  place-items:center;
+  transition:opacity .25s ease;
+  pointer-events:none;
+}
+.win-overlay span{
+  background:rgba(6,11,24,.92);
+  border:1px solid var(--cyan);
+  color:var(--cyan);
+  padding:8px 18px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  box-shadow:0 4px 20px rgba(0,0,0,.6);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.app-window:hover .win-overlay{
+  opacity:1;
+}
 
 /* ---------- Banner penawaran ---------- */
 .offer{background:linear-gradient(135deg,#002B8A 0%,#0054EB 50%,#00AEEF 100%);color:#FFFFFF;box-shadow:0 10px 40px rgba(0,84,235,.2)}
@@ -298,7 +342,7 @@ a{color:inherit}
 
 dialog{border:none;padding:0;background:transparent;max-width:min(1200px,94vw);max-height:94vh}
 dialog::backdrop{background:rgba(6,11,24,.88);backdrop-filter:blur(8px)}
-dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:auto;margin:0 auto;display:block}
+dialog img, dialog video{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:auto;margin:0 auto;display:block;box-shadow:0 24px 70px rgba(0,0,0,.7);background:#060B18}
 .dlg-ph{width:min(400px,90vw);aspect-ratio:9/16;border-radius:24px;background:var(--bg-900);border:1px solid var(--cyan-line);display:grid;place-items:center;color:var(--muted-d)}
 .close{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:48px;height:48px;border-radius:50%;border:1px solid var(--cyan-line);background:var(--bg-950);color:var(--porcelain);font-size:22px;cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
 .close:hover{background:var(--bg-800);border-color:var(--cyan);color:var(--cyan)}
@@ -478,29 +522,29 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
     <div class="triptych">
       <article class="tri">
         <span class="tri-num">01</span>
-        <div class="tri-art" data-zoom="Nomor Whastapp tanpa batas.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: Papan per Nomor Sales">
-          <img src="Nomor Whastapp tanpa batas.jpg" alt="Papan per Nomor Sales SENTARIS" class="tri-art-img" loading="lazy">
-          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
-        </div>
-        <h3>Nomor WhatsApp tanpa batas.</h3>
-        <p>5 atau 50 nomor sales masuk satu dasbor. Sales tetap pakai WhatsApp di HP; leader melihat semuanya tanpa pinjam HP siapa pun.</p>
-        <span class="hl">50+ nomor aktif di satu dasbor hari ini</span>
-      </article>
-      <article class="tri">
-        <span class="tri-num">02</span>
-        <div class="tri-art" data-zoom="ADS Dashboard.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: ADS Dashboard CRM">
-          <img src="ADS Dashboard.jpg" alt="ADS Dashboard CRM SENTARIS" class="tri-art-img" loading="lazy">
-          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
+        <div class="tri-art" data-zoom="1_ads_dashboard.mp4" title="Klik untuk memutar video resolusi penuh" aria-label="Putar video: ADS Dashboard CRM">
+          <video src="1_ads_dashboard.mp4" autoplay muted loop playsinline preload="metadata" class="tri-art-video"></video>
+          <div class="tri-art-overlay"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Putar Video</span></div>
         </div>
         <h3>ADS Dashboard di dalam CRM.</h3>
         <p>Tahu iklan Meta mana yang jadi chat, lead, dan closing tanpa buka Ads Manager. Skor 1–10 dari pesan yang benar-benar masuk.</p>
         <span class="hl">Belanja iklan ↔ chat masuk, satu layar</span>
       </article>
       <article class="tri">
+        <span class="tri-num">02</span>
+        <div class="tri-art" data-zoom="2_unlimited_numbers.mp4" title="Klik untuk memutar video resolusi penuh" aria-label="Putar video: Papan per Nomor Sales">
+          <video src="2_unlimited_numbers.mp4" autoplay muted loop playsinline preload="metadata" class="tri-art-video"></video>
+          <div class="tri-art-overlay"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Putar Video</span></div>
+        </div>
+        <h3>Nomor WhatsApp tanpa batas.</h3>
+        <p>5 atau 50 nomor sales masuk satu dasbor. Sales tetap pakai WhatsApp di HP; leader melihat semuanya tanpa pinjam HP siapa pun.</p>
+        <span class="hl">50+ nomor aktif di satu dasbor hari ini</span>
+      </article>
+      <article class="tri">
         <span class="tri-num">03</span>
-        <div class="tri-art phone-art" data-zoom="Mobile friendly.jpg" title="Klik untuk melihat resolusi penuh" aria-label="Lihat resolusi penuh: Aplikasi Mobile SENTARIS">
-          <img src="Mobile friendly.jpg" alt="Aplikasi Mobile SENTARIS" class="tri-art-img" loading="lazy">
-          <div class="tri-art-overlay"><span>🔍 Klik untuk perbesar</span></div>
+        <div class="tri-art phone-art" data-zoom="3_mobile_friendly.mp4" title="Klik untuk memutar video resolusi penuh" aria-label="Putar video: Aplikasi Mobile SENTARIS">
+          <video src="3_mobile_friendly.mp4" autoplay muted loop playsinline preload="metadata" class="tri-art-video"></video>
+          <div class="tri-art-overlay"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Putar Video</span></div>
         </div>
         <h3>Mobile friendly.</h3>
         <p>Balas chat, pindah tahap lead, lihat skor iklan, dan terima notifikasi push. Owner memantau dari mana saja.</p>
@@ -521,27 +565,22 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
       <!-- Navigasi Tabs Fitur -->
       <div class="feature-tabs" role="tablist" aria-label="Pilihan Fitur SENTARIS">
         <button class="ftab active" type="button" role="tab" data-tab="0" aria-selected="true">
-          <span>💬</span>
           <span>Chat Saya</span>
           <span class="ftab-badge">50+ Nomor</span>
         </button>
         <button class="ftab" type="button" role="tab" data-tab="1" aria-selected="false">
-          <span>🤖</span>
           <span>Horus AI</span>
           <span class="ftab-badge">24 Jam</span>
         </button>
         <button class="ftab" type="button" role="tab" data-tab="2" aria-selected="false">
-          <span>⚡</span>
           <span>Auto Follow-Up</span>
           <span class="ftab-badge">Anti Ghosting</span>
         </button>
         <button class="ftab" type="button" role="tab" data-tab="3" aria-selected="false">
-          <span>📊</span>
           <span>ADS Dashboard</span>
           <span class="ftab-badge">Meta to ROAS</span>
         </button>
         <button class="ftab" type="button" role="tab" data-tab="4" aria-selected="false">
-          <span>👥</span>
           <span>Papan Sales</span>
           <span class="ftab-badge">Monitoring Tim</span>
         </button>
@@ -562,16 +601,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
             </ul>
           </div>
           <div class="fpanel-media">
-            <div class="app-window">
-              <div class="win-header">
-                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
-                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/chat-saya</div>
-                <button class="win-zoom-btn" type="button" data-zoom="fitur1.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
-              </div>
-              <div class="win-body" data-zoom="fitur1.jpg">
-                <img src="fitur1.jpg" alt="Dasbor Chat Saya SENTARIS" class="win-img" loading="eager">
-                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
-              </div>
+            <div class="app-window" data-zoom="fitur1.jpg" title="Klik untuk melihat resolusi penuh">
+              <img src="fitur1.jpg" alt="Dasbor Chat Saya SENTARIS" class="win-img" loading="eager">
+              <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
             </div>
           </div>
         </div>
@@ -589,16 +621,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
             </ul>
           </div>
           <div class="fpanel-media">
-            <div class="app-window">
-              <div class="win-header">
-                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
-                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/horus-ai</div>
-                <button class="win-zoom-btn" type="button" data-zoom="fitur2.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
-              </div>
-              <div class="win-body" data-zoom="fitur2.jpg">
-                <img src="fitur2.jpg" alt="Dasbor Horus AI SENTARIS" class="win-img" loading="lazy">
-                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
-              </div>
+            <div class="app-window" data-zoom="fitur2.jpg" title="Klik untuk melihat resolusi penuh">
+              <img src="fitur2.jpg" alt="Dasbor Horus AI SENTARIS" class="win-img" loading="lazy">
+              <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
             </div>
           </div>
         </div>
@@ -616,16 +641,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
             </ul>
           </div>
           <div class="fpanel-media">
-            <div class="app-window">
-              <div class="win-header">
-                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
-                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/auto-follow-up</div>
-                <button class="win-zoom-btn" type="button" data-zoom="fitur3.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
-              </div>
-              <div class="win-body" data-zoom="fitur3.jpg">
-                <img src="fitur3.jpg" alt="Dasbor Auto Follow Up SENTARIS" class="win-img" loading="lazy">
-                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
-              </div>
+            <div class="app-window" data-zoom="fitur3.jpg" title="Klik untuk melihat resolusi penuh">
+              <img src="fitur3.jpg" alt="Dasbor Auto Follow Up SENTARIS" class="win-img" loading="lazy">
+              <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
             </div>
           </div>
         </div>
@@ -643,16 +661,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
             </ul>
           </div>
           <div class="fpanel-media">
-            <div class="app-window">
-              <div class="win-header">
-                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
-                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/ads-dashboard</div>
-                <button class="win-zoom-btn" type="button" data-zoom="fitur4.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
-              </div>
-              <div class="win-body" data-zoom="fitur4.jpg">
-                <img src="fitur4.jpg" alt="Dasbor ADS Tracking SENTARIS" class="win-img" loading="lazy">
-                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
-              </div>
+            <div class="app-window" data-zoom="fitur4.jpg" title="Klik untuk melihat resolusi penuh">
+              <img src="fitur4.jpg" alt="Dasbor ADS Tracking SENTARIS" class="win-img" loading="lazy">
+              <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
             </div>
           </div>
         </div>
@@ -670,16 +681,9 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
             </ul>
           </div>
           <div class="fpanel-media">
-            <div class="app-window">
-              <div class="win-header">
-                <div class="win-dots"><span class="wdot red"></span><span class="wdot yellow"></span><span class="wdot green"></span></div>
-                <div class="win-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> app.sentaris.cloud/papan-sales</div>
-                <button class="win-zoom-btn" type="button" data-zoom="fitur5.jpg" title="Klik untuk perbesar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg> Perbesar</button>
-              </div>
-              <div class="win-body" data-zoom="fitur5.jpg">
-                <img src="fitur5.jpg" alt="Dasbor Papan Nomor Sales SENTARIS" class="win-img" loading="lazy">
-                <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
-              </div>
+            <div class="app-window" data-zoom="fitur5.jpg" title="Klik untuk melihat resolusi penuh">
+              <img src="fitur5.jpg" alt="Dasbor Papan Nomor Sales SENTARIS" class="win-img" loading="lazy">
+              <div class="win-overlay"><span>🔍 Klik untuk lihat resolusi penuh</span></div>
             </div>
           </div>
         </div>
@@ -847,8 +851,13 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
       dlg.showModal();
     });
   });
-  dlg.querySelector(".close").addEventListener("click", () => dlg.close());
-  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  const closeDialog = () => {
+    body.innerHTML = "";
+    dlg.close();
+  };
+  dlg.querySelector(".close").addEventListener("click", closeDialog);
+  dlg.addEventListener("click", e => { if (e.target === dlg) closeDialog(); });
+  dlg.addEventListener("close", () => { body.innerHTML = ""; });
 
   /* Feature Tabs Switcher */
   const ftabs = document.querySelectorAll(".ftab");
@@ -867,17 +876,27 @@ dialog img{border-radius:14px;max-height:88vh;max-width:min(1200px,94vw);width:a
     });
   });
 
-  /* Feature Lightbox Zoom */
+  /* Feature Lightbox Zoom (Images & Videos) */
   document.querySelectorAll("[data-zoom]").forEach(el => {
     el.addEventListener("click", e => {
       e.stopPropagation();
       const src = el.dataset.zoom;
       if (src) {
         body.innerHTML = "";
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = "Tampilan Dasbor Resolusi Penuh";
-        body.appendChild(img);
+        if (src.endsWith(".mp4")) {
+          const vid = document.createElement("video");
+          vid.src = src;
+          vid.autoplay = true;
+          vid.controls = true;
+          vid.loop = true;
+          vid.playsInline = true;
+          body.appendChild(vid);
+        } else {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "Tampilan Dasbor Resolusi Penuh";
+          body.appendChild(img);
+        }
         dlg.showModal();
       }
     });
