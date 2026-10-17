@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>SENTARIS — Dari iklan sampai closing</title>
-  <meta name="description" content="Nomor 1 AI CRM Content + Ads + Sales, dalem 1 dashboard. Semua nomor WhatsApp sales, iklan Meta terukur sampai closing, dan AI yang membalas lead dalam hitungan detik. Coba gratis 5 hari." />
+  <meta name="description" content="Nomor 1 AI CRM Content + Ads + Sales, dalam 1 dashboard. Semua nomor WhatsApp sales, iklan Meta terukur sampai closing, dan AI yang membalas lead dalam hitungan detik. Coba gratis 5 hari." />
   <meta name="theme-color" content="#e6f5fb" />
   <link rel="icon" type="image/jpeg" href="2.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,14 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add("js");</script>
   <style>
-    /* =========================================================================
-       SENTARIS — model: isometric scene · journey line · numbered process
-       Palette (from the SENTARIS logo):
-         Deep   #0e1430  text + solid CTA
-         Lumen  #f8fafc  page
-         Signal #0055e6  the journey line + accents
-         Spark  #e6f5fb  soft field behind the scene (pale tint of the logo cyan)
-       ========================================================================= */
     :root {
       --deep: #0e1430;
       --deep-2: #4b5470;
@@ -59,6 +51,10 @@
     .h2 { margin: 0; font-size: clamp(36px, 5.2vw, 72px); line-height: 1.02; font-weight: 700; letter-spacing: -0.035em; }
     .h2 .soft, .h1 .soft { color: var(--deep-3); }
     .p { margin: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--deep-2); }
+    .grad { background: linear-gradient(90deg, #00c8f0 0%, #0055e6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+    .hero-copy { max-width: 860px; }
+    .hero-copy .h1 { font-size: clamp(40px, 5.2vw, 80px); line-height: 1.02; }
+    .hero-copy .p { max-width: 42ch; }
 
     /* ---------- Buttons ---------- */
     .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 20px; border-radius: 999px; font-size: 15px; font-weight: 500; letter-spacing: -0.005em; white-space: nowrap; transition: background-color .25s ease, color .25s ease, transform .3s ease, box-shadow .25s ease; }
@@ -71,7 +67,7 @@
     .arrow { display: inline-block; transition: transform .35s ease; }
     a:hover .arrow, button:hover .arrow { transform: translateX(4px); }
 
-    /* ---------- Header (two persistent CTAs) ---------- */
+    /* ---------- Header ---------- */
     .hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 60; transition: background-color .3s ease, box-shadow .3s ease; }
     .hdr.solid { background: rgba(248,250,252,.9); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); box-shadow: 0 1px 0 rgba(14,20,48,.08); }
     .hdr-in { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; height: 76px; width: min(1440px, calc(100% - var(--pad) * 2)); margin: 0 auto; }
@@ -83,16 +79,15 @@
     .mark svg { width: 18px; height: auto; }
     .hdr-r { display: flex; justify-content: flex-end; gap: 10px; }
 
-    /* ---------- Journey (hero + process on one sticky isometric scene) ---------- */
+    /* ---------- Journey ---------- */
     .journey { position: relative; height: 520vh; background: var(--spark); }
     .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
     .stage::after { content: ""; position: absolute; inset: auto 0 0 0; height: 22%; pointer-events: none; background: linear-gradient(180deg, rgba(230,245,251,0), var(--spark)); }
-    /* soft wash behind the copy so text always reads cleanly over the scene */
-    .stage::before { content: ""; position: absolute; z-index: 1; inset: 0 auto 0 0; width: 46%; pointer-events: none; background: linear-gradient(90deg, rgba(230,245,251,.96) 0%, rgba(230,245,251,.85) 55%, rgba(230,245,251,0) 100%); }
+    .stage::before { content: ""; position: absolute; z-index: 1; inset: 0 auto 0 0; width: 58%; pointer-events: none; background: linear-gradient(90deg, rgba(230,245,251,.96) 0%, rgba(230,245,251,.85) 55%, rgba(230,245,251,0) 100%); }
     #iso { position: absolute; inset: 0; width: 100%; height: 100%; }
     #iso text { font-family: var(--font); }
-    .hero-copy { position: absolute; z-index: 2; left: var(--pad); bottom: clamp(40px, 8vh, 88px); max-width: 760px; }
-    .hero-copy .p { margin-top: 26px; max-width: 34ch; color: var(--deep-2); }
+    .hero-copy { position: absolute; z-index: 2; left: var(--pad); bottom: clamp(40px, 8vh, 88px); }
+    .hero-copy .p { margin-top: 26px; color: var(--deep-2); }
     .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
     .cue { position: absolute; z-index: 2; right: var(--pad); bottom: clamp(40px, 8vh, 88px); display: flex; align-items: center; gap: 14px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--deep-2); }
     .cue i { position: relative; width: 2px; height: 46px; background: rgba(14,20,48,.15); overflow: hidden; }
@@ -112,7 +107,7 @@
     .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2s ease-out infinite; }
     @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(3.2); opacity: 0; } }
 
-    /* ---------- Features (icon grid) ---------- */
+    /* ---------- Features ---------- */
     .feat-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: end; }
     .feat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--line); }
     .feat { padding: 40px 32px 8px 0; }
@@ -135,7 +130,7 @@
     .vcard h3 { margin: 8px 0 0; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
     .vcard p { margin: 8px 0 0; font-size: 15px; color: var(--deep-2); line-height: 1.55; }
 
-    /* ---------- Dashboard tabs (numbered) ---------- */
+    /* ---------- Dashboard tabs ---------- */
     .dash { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.6fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: clamp(48px, 6vw, 80px); }
     .tabs { display: grid; border-top: 1px solid var(--line); }
     .tab { display: grid; grid-template-columns: 48px 1fr; align-items: start; gap: 4px; padding: 22px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; cursor: pointer; }
@@ -205,7 +200,7 @@
     .offer p { margin: 8px 0 0; font-size: 15px; color: var(--deep-2); line-height: 1.6; }
     .fine { margin-top: 28px; font-size: 13px; color: var(--deep-3); }
 
-    /* ---------- Footer (big arrow links) ---------- */
+    /* ---------- Footer ---------- */
     .ftr { background: var(--deep); color: #fff; padding: clamp(64px, 8vw, 104px) 0 40px; }
     .ftr-links { display: grid; border-top: 1px solid rgba(255,255,255,.14); }
     .ftr-links a { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: clamp(28px, 4vw, 56px); font-weight: 700; letter-spacing: -0.03em; transition: color .25s ease, padding .35s ease; }
@@ -222,10 +217,7 @@
     #demo video { width: min(1100px, 94vw); aspect-ratio: 16 / 9; height: auto; }
     .x { position: fixed; top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #fff; color: var(--deep); font-size: 22px; line-height: 1; cursor: pointer; }
 
-    /* mobile-only pieces (hidden on desktop) */
     .m-hero, .m-panel, .swipe-hint, .l-short { display: none; }
-
-    /* ---------- Reveal initial state (only with JS) ---------- */
     .js [data-reveal] { opacity: 0; transform: translateY(32px); }
 
     /* ---------- Responsive ---------- */
@@ -241,16 +233,14 @@
       .hdr-r .pill.soft { display: none; }
       .l-long { display: none; } .l-short { display: inline; }
 
-      /* Mobile hero: its own block above the scene (text never covers the illustration) */
       .m-hero { display: block; padding: 108px var(--pad) 36px; background: var(--spark); }
-      .m-hero .h1 { font-size: clamp(40px, 11.5vw, 60px); }
+      .m-hero .h1 { font-size: clamp(30px, 8.6vw, 48px); line-height: 1.04; }
       .m-hero .p { margin-top: 18px; font-size: 16px; }
       .m-hero .hero-cta { margin-top: 26px; }
       .m-hero .hero-cta .pill { flex: 1 1 auto; }
       .m-hero .trust { margin: 18px 0 0; font-size: 13px; color: var(--deep-3); }
       #heroCopy { display: none; }
 
-      /* Journey on mobile: scene on top, a clean text panel below — no overlap */
       .stage::before, .stage::after { display: none; }
       #iso { top: 64px; height: calc(58% - 64px); }
       .m-panel { display: block; position: absolute; z-index: 1; left: 0; right: 0; top: 58%; bottom: 0; background: var(--spark); box-shadow: 0 -1px 0 rgba(14,20,48,.07); }
@@ -265,7 +255,6 @@
       .cue { left: var(--pad); right: var(--pad); top: calc(58% + 64px); bottom: auto; justify-content: flex-start; font-size: 12px; }
       .cue i { height: 34px; }
 
-      /* Sections */
       .feat-head, .dash, .about, .faq-grid { grid-template-columns: minmax(0, 1fr); }
       .offer { grid-template-columns: minmax(0, 1fr); }
       .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -273,7 +262,6 @@
       .stat:nth-child(n+3) { margin-top: 24px; }
       .shot-wrap { position: relative; top: 0; order: -1; }
       .team { justify-self: stretch; }
-      /* videos & testimonials become a swipe row */
       .vgrid, .testi { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-left: calc(var(--pad) * -1); margin-right: calc(var(--pad) * -1); padding: 0 var(--pad) 10px; scroll-padding: 0 var(--pad); scrollbar-width: none; }
       .vgrid::-webkit-scrollbar, .testi::-webkit-scrollbar { display: none; }
       .vgrid > *, .testi > * { flex: 0 0 84%; scroll-snap-align: start; }
@@ -293,7 +281,6 @@
       .feat + .feat { border-top: 1px solid var(--line); margin-top: 0; }
       .feat:nth-child(n+3) { margin-top: 0; }
     }
-    /* No motion: the journey becomes a normal stacked section */
     @media (prefers-reduced-motion: reduce) {
       .js [data-reveal] { opacity: 1; transform: none; }
       .journey { height: auto; }
@@ -306,7 +293,6 @@
 </head>
 <body>
 
-  <!-- ===================== HEADER: links · logo · two CTAs ===================== -->
   <header class="hdr" id="hdr">
     <div class="hdr-in">
       <nav class="hdr-l" aria-label="Menu utama">
@@ -327,11 +313,11 @@
   </header>
 
   <main>
-    <!-- ===================== MOBILE HERO (phones only) ===================== -->
+    <!-- MOBILE HERO -->
     <section class="m-hero" aria-label="SENTARIS">
       <p class="kicker">CRM + AI untuk tim sales</p>
-      <h1 class="h1">Dari iklan sampai closing.</h1>
-      <p class="p">Nomor 1 AI CRM Content + Ads + Sales, dalem 1 dashboard. Semua nomor WhatsApp sales, iklan Meta, dan AI yang membalas lead dalam hitungan detik.</p>
+      <h1 class="h1">Nomor 1 AI CRM <span class="grad">Content + Ads + Sales</span> dalam 1 dashboard</h1>
+      <p class="p">Siapkah tim sales Anda membalas, membagi, dan mencatat setiap lead dalam hitungan detik?</p>
       <div class="hero-cta">
         <a class="pill solid lg wa" href="#">Coba Gratis 5 Hari <span class="arrow" aria-hidden="true">→</span></a>
         <a class="pill soft lg" href="https://playbook.sentaris.cloud" target="_blank" rel="noopener">Lihat demo</a>
@@ -339,7 +325,7 @@
       <p class="trust">Gratis 5 hari · Onboarding di hari yang sama · Berhenti kapan saja</p>
     </section>
 
-    <!-- ===================== JOURNEY: hero + 4-step process on one scene ===================== -->
+    <!-- JOURNEY -->
     <section class="journey" id="top" aria-label="Cara kerja SENTARIS">
       <div class="stage">
         <svg id="iso" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustrasi isometrik: lead berjalan dari iklan, ke chat WhatsApp, dibalas Horus AI, dibagi ke tim sales, sampai closing.">
@@ -356,8 +342,8 @@
         <div class="m-panel" aria-hidden="true"></div>
         <div class="hero-copy" id="heroCopy">
           <p class="kicker">CRM + AI untuk tim sales</p>
-          <h1 class="h1">Dari iklan<br />sampai closing.</h1>
-          <p class="p">Nomor 1 AI CRM Content + Ads + Sales, dalem 1 dashboard. Semua nomor WhatsApp sales, iklan Meta, dan AI yang membalas lead dalam hitungan detik.</p>
+          <h1 class="h1">Nomor 1 AI CRM<br /><span class="grad">Content + Ads + Sales</span><br />dalam 1 dashboard</h1>
+          <p class="p">Siapkah tim sales Anda membalas, membagi, dan mencatat setiap lead dalam hitungan detik?</p>
           <div class="hero-cta">
             <a class="pill solid lg wa" href="#">Coba Gratis 5 Hari <span class="arrow" aria-hidden="true">→</span></a>
             <a class="pill soft lg" href="https://playbook.sentaris.cloud" target="_blank" rel="noopener">Lihat demo, tanpa daftar</a>
@@ -391,7 +377,7 @@
       </div>
     </section>
 
-    <!-- ===================== FEATURES ===================== -->
+    <!-- FEATURES -->
     <section class="section" id="fitur" aria-labelledby="feat-title">
       <div class="wrap">
         <div class="feat-head">
@@ -426,7 +412,7 @@
       </div>
     </section>
 
-    <!-- ===================== FILM + VIDEOS ===================== -->
+    <!-- FILM + VIDEOS -->
     <section class="section film" aria-labelledby="film-title">
       <div class="wrap">
         <p class="kicker" data-reveal>Lihat produknya</p>
@@ -453,7 +439,7 @@
       </div>
     </section>
 
-    <!-- ===================== DASHBOARD (numbered tabs) ===================== -->
+    <!-- DASHBOARD -->
     <section class="section" aria-labelledby="dash-title">
       <div class="wrap">
         <p class="kicker" data-reveal>Di dalam dasbor</p>
@@ -477,7 +463,7 @@
       </div>
     </section>
 
-    <!-- ===================== ABOUT ===================== -->
+    <!-- ABOUT -->
     <section class="section film" id="tentang" aria-labelledby="about-title">
       <div class="wrap">
         <div class="about">
@@ -503,7 +489,7 @@
       </div>
     </section>
 
-    <!-- ===================== TESTIMONIALS ===================== -->
+    <!-- TESTIMONIALS -->
     <section class="section" id="testimoni" aria-labelledby="t-title" style="background:var(--spark)">
       <div class="wrap">
         <p class="kicker" data-reveal>Testimoni riil klien</p>
@@ -535,7 +521,7 @@
       </div>
     </section>
 
-    <!-- ===================== FAQ ===================== -->
+    <!-- FAQ -->
     <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="wrap faq-grid">
         <div>
@@ -552,7 +538,7 @@
       </div>
     </section>
 
-    <!-- ===================== CTA + OFFER ===================== -->
+    <!-- CTA + OFFER -->
     <section class="section cta" id="coba" aria-labelledby="cta-title">
       <div class="wrap">
         <h2 class="h2" id="cta-title" data-reveal>Balas setiap lead dalam hitungan detik. <span class="soft">Mulai hari ini.</span></h2>
@@ -571,7 +557,6 @@
     </section>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer class="ftr">
     <div class="wrap">
       <nav class="ftr-links" aria-label="Tautan">
@@ -589,7 +574,6 @@
   <dialog id="demo" aria-label="Film demo SENTARIS"><button class="x" type="button" data-close aria-label="Tutup">×</button><video controls playsinline preload="none"></video></dialog>
   <dialog id="lightbox" aria-label="Gambar"><button class="x" type="button" data-close aria-label="Tutup">×</button><img alt="" /></dialog>
 
-  <!-- Libraries (pinned versions) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -605,11 +589,9 @@
     var WA = "https://wa.me/6281231333316?text=" + encodeURIComponent("Halo SENTARIS, saya mau Coba Gratis 5 Hari");
     $$(".wa").forEach(function (a) { a.href = WA; a.target = "_blank"; a.rel = "noopener"; });
 
-    /* =====================================================================
-       ISOMETRIC SCENE (built in code: white blocks on a soft blue field)
-       ===================================================================== */
+    /* ---------- ISOMETRIC SCENE ---------- */
     var MOBILE = matchMedia("(max-width: 900px)").matches;
-    var TAGS = MOBILE ? 1.3 : 1, DOT = MOBILE ? 1.5 : 1;   /* labels & lead dot read larger on phones */
+    var TAGS = MOBILE ? 1.3 : 1, DOT = MOBILE ? 1.5 : 1;
     var S = 40, OX = 783, OY = 210, C30 = 0.8660254;
     function P(x, y, z) { return [OX + (x - y) * C30 * S, OY + (x + y) * 0.5 * S - (z || 0) * S]; }
     function pts(arr) { return arr.map(function (p) { var q = P(p[0], p[1], p[2]); return q[0].toFixed(1) + "," + q[1].toFixed(1); }).join(" "); }
@@ -618,18 +600,15 @@
     function box(g, x, y, z, w, d, h, o) {
       o = o || {};
       var gg = el("g", {}, g);
-      // soft contact shadow, cast toward +x
       if (!o.noShadow && z === 0) el("polygon", { points: pts([[x + w, y, 0], [x + w + h * .45, y + h * .1, 0], [x + w + h * .45, y + d + h * .1, 0], [x + w, y + d, 0]]), fill: "rgba(0,56,160,.07)" }, gg);
       el("polygon", { points: pts([[x + w, y, z], [x + w, y + d, z], [x + w, y + d, z + h], [x + w, y, z + h]]), fill: o.right || "#d6e1ee", stroke: EDGE, "stroke-width": 1 }, gg);
       el("polygon", { points: pts([[x, y + d, z], [x + w, y + d, z], [x + w, y + d, z + h], [x, y + d, z + h]]), fill: o.left || "#ebf1f8", stroke: EDGE, "stroke-width": 1 }, gg);
       el("polygon", { points: pts([[x, y, z + h], [x + w, y, z + h], [x + w, y + d, z + h], [x, y + d, z + h]]), fill: o.top || "#ffffff", stroke: EDGE, "stroke-width": 1 }, gg);
       return gg;
     }
-    // a flat panel drawn on the +y (left, facing the viewer) side of a box
     function faceY(g, x0, x1, y, z0, z1, fill) { return el("polygon", { points: pts([[x0, y, z0], [x1, y, z0], [x1, y, z1], [x0, y, z1]]), fill: fill }, g); }
 
     var ground = $("#ground"), world = $("#world"), tags = $("#tags");
-    // platform + faint grid
     el("polygon", { points: pts([[-1, -1, 0], [18, -1, 0], [18, 16, 0], [-1, 16, 0]]), fill: "#f2fafd" }, ground);
     el("polygon", { points: pts([[18, -1, 0], [18, 16, 0], [18, 16, -0.5], [18, -1, -0.5]]), fill: "#cfe4f1" }, ground);
     el("polygon", { points: pts([[-1, 16, 0], [18, 16, 0], [18, 16, -0.5], [-1, 16, -0.5]]), fill: "#dcedf6" }, ground);
@@ -642,14 +621,11 @@
       el("line", { x1: c[0], y1: c[1], x2: dd[0], y2: dd[1], stroke: "rgba(0,85,230,.06)", "stroke-width": 1 }, ground);
     }
 
-    // Scene objects, listed back-to-front (painter's order by x + y)
     var objects = [];
     function add(order, draw) { objects.push({ o: order, d: draw }); }
-    // ambient blocks (the "city" of the business)
     [[15, 0, 2, 2, 1.4], [0, 7, 2, 1.5, 0.8], [6, 8, 1.6, 1.6, 2.2], [16, 2, 1.5, 2, 2.6], [0, 10, 1.4, 1.4, 1.6]].forEach(function (b) {
       add(b[0] + b[1], function () { box(world, b[0], b[1], 0, b[2], b[3], b[4]); });
     });
-    // A · billboard (ads)
     add(4, function () {
       box(world, 1, 2, 0, 2, 2, 0.5);
       box(world, 1.8, 2.8, 0.5, 0.4, 0.4, 2.1, { noShadow: true });
@@ -658,13 +634,11 @@
       faceY(world, 1.0, 2.2, 3.05, 3.5, 3.75, "rgba(255,255,255,.95)");
       faceY(world, 1.0, 2.8, 3.05, 3.05, 3.25, "rgba(255,255,255,.55)");
     });
-    // B · WhatsApp tower (chats)
     add(8, function () {
       box(world, 5, 2, 0, 2, 2, 3.6);
       faceY(world, 5.4, 6.6, 4, 2.6, 3.2, "#3de2ff");
       for (var k = 0; k < 3; k++) faceY(world, 5.4, 6.6, 4, 0.5 + k * 0.7, 0.9 + k * 0.7, "rgba(0,85,230,.18)");
     });
-    // C · Horus AI core
     add(12, function () {
       box(world, 9, 2, 0, 3, 3, 0.8);
       box(world, 9.75, 2.75, 0.8, 1.5, 1.5, 1.4, { noShadow: true, top: "#e9fbff" });
@@ -672,7 +646,6 @@
       var core = P(10.5, 3.5, 2.2);
       el("circle", { cx: core[0], cy: core[1], r: 18, fill: "none", stroke: "#3de2ff", "stroke-width": 2, class: "pulse" }, world);
     });
-    // D · sales team (desks with screens)
     add(19, function () {
       for (var r = 0; r < 2; r++) for (var q = 0; q < 3; q++) {
         var x = 9 + q * 1.5, y = 9 + r * 1.4;
@@ -680,7 +653,6 @@
         box(world, x + 0.15, y + 0.1, 0.45, 0.8, 0.12, 0.55, { noShadow: true, left: "#0e1430", right: "#1d2547", top: "#2a3463" });
       }
     });
-    // E · closing (shop with a check badge)
     add(13, function () {
       box(world, 2, 9, 0, 3, 3, 2.4);
       box(world, 2.2, 9.2, 2.4, 2.6, 2.6, 0.25, { noShadow: true });
@@ -689,7 +661,6 @@
     });
     objects.sort(function (a, b) { return a.o - b.o; }).forEach(function (o) { o.d(); });
 
-    // Journey route along the ground: A → B → C → corridor → D → E
     var routeIso = [[2, 5.4], [6, 5.4], [10.5, 5.4], [14, 5.4], [14, 12.8], [10.5, 12.8], [3.5, 12.8]];
     var d = "M" + routeIso.map(function (p) { var q = P(p[0], p[1], 0); return q[0].toFixed(1) + " " + q[1].toFixed(1); }).join(" L");
     var route = $("#route"), ghost = $("#routeGhost"), lead = $("#lead");
@@ -697,11 +668,9 @@
     var LEN = route.getTotalLength();
     route.style.strokeDasharray = LEN; route.style.strokeDashoffset = LEN;
 
-    // where each stop sits along the route (0..1)
     function lenTo(idx) { var L = 0; for (var n = 1; n <= idx; n++) { var a1 = P(routeIso[n - 1][0], routeIso[n - 1][1], 0), b1 = P(routeIso[n][0], routeIso[n][1], 0); L += Math.hypot(b1[0] - a1[0], b1[1] - a1[1]); } return L / LEN; }
     var STOP = { A: 0, B: lenTo(1), C: lenTo(2), D: lenTo(5), E: 1 };
 
-    // Tags (labels) above each object
     function tag(text, x, y, z, key) {
       var p = P(x, y, z), g = el("g", { "data-tag": key, transform: "translate(" + p[0].toFixed(1) + " " + p[1].toFixed(1) + ")" }, tags);
       var outer = el("g", { transform: "scale(" + TAGS + ")" }, g);
@@ -721,7 +690,6 @@
       E: tag("Closing", 3.5, 10.5, 2.9, "E")
     };
 
-    // the lead dot follows the route
     function setProgress(p) {
       p = Math.max(0, Math.min(1, p));
       route.style.strokeDashoffset = LEN * (1 - p);
@@ -730,7 +698,6 @@
       lead.style.opacity = p > 0.002 ? 1 : 0;
     }
 
-    // camera: focus a point (in viewBox units) at a given screen anchor and zoom
     var cam = $("#cam");
     var CAM = { x: 800, y: 470, s: 1, ax: 0.66, ay: 0.52 };
     function applyCam() {
@@ -741,7 +708,6 @@
     var F = { A: focusOf(3, 4, 1.2), B: focusOf(6.5, 4, 1.4), C: focusOf(11, 4.5, 0.6), D: focusOf(11.5, 11, 0.2), E: focusOf(4, 11.5, 0.8) };
 
     /* ---------- Interactions that work without GSAP ---------- */
-    // videos: load + play only while visible
     var vio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var v = e.target;
@@ -751,7 +717,6 @@
     }, { threshold: 0.3 });
     $$("video[data-src]").forEach(function (v) { vio.observe(v); });
 
-    // dialogs
     var demo = $("#demo"), dv = $("video", demo), lb = $("#lightbox"), lbi = $("img", lb);
     $$("[data-open-demo]").forEach(function (b) { b.addEventListener("click", function () { if (!dv.getAttribute("src")) dv.src = "SENTARIS%20LAUNCH.mp4"; demo.showModal(); var pr = dv.play(); if (pr && pr.catch) pr.catch(function () {}); }); });
     $$("[data-lightbox-src]").forEach(function (b) { b.addEventListener("click", function () { lbi.src = b.dataset.lightboxSrc; lb.showModal(); }); });
@@ -761,7 +726,6 @@
       dg.addEventListener("close", function () { var v = $("video", dg); if (v) v.pause(); });
     });
 
-    // dashboard tabs
     var tabs = $$(".tab"), shots = $$(".shot-wrap img");
     tabs.forEach(function (t) { t.addEventListener("click", function () {
       var k = +t.dataset.shot;
@@ -769,16 +733,14 @@
       shots.forEach(function (s, n) { s.classList.toggle("on", n === k); });
     }); });
 
-    // header turns solid after the hero
     var hdr = $("#hdr");
     var onScrollHdr = function () { hdr.classList.toggle("solid", window.scrollY > window.innerHeight * 0.6); };
     addEventListener("scroll", onScrollHdr, { passive: true }); onScrollHdr();
 
-    // team photo: never wider than its real pixels
     var timg = $(".team-photo img");
     if (timg) { var fit = function () { if (timg.naturalWidth) $(".team").style.maxWidth = timg.naturalWidth + "px"; }; timg.complete ? fit() : timg.addEventListener("load", fit); }
 
-    /* ---------- Static fallback (no GSAP or reduced motion) ---------- */
+    /* ---------- Static fallback ---------- */
     function staticScene() {
       CAM.x = 800; CAM.y = MOBILE ? 520 : 470; CAM.s = MOBILE ? 0.78 : 1; CAM.ax = .5; CAM.ay = .5; applyCam(); setProgress(1);
       $$(".tag-in").forEach(function (t) { t.style.opacity = 1; });
@@ -787,7 +749,6 @@
     if (!window.gsap || !window.ScrollTrigger || reduce) { staticScene(); return; }
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ---------- Smooth scroll on desktop (Lenis), native on touch ---------- */
     if (window.Lenis && matchMedia("(pointer: fine)").matches) {
       var lenis = new Lenis({ lerp: 0.1 });
       lenis.on("scroll", ScrollTrigger.update);
@@ -800,14 +761,13 @@
     }
 
     var mobile = MOBILE;
-    /* phones: the scene window is narrow, so the overview is wider and step close-ups a bit closer */
     var Z = mobile ? 1.22 : 1;
     var OVER = mobile ? 0.78 : 0.96;
     var anchorFor = function () { return mobile ? { ax: 0.5, ay: 0.6 } : { ax: 0.64, ay: 0.54 }; };
     if (mobile) { CAM.ax = 0.5; CAM.ay = 0.5; CAM.y = 520; }
     CAM.s = OVER;
 
-    /* ---------- The journey timeline (scrubbed by scroll) ---------- */
+    /* ---------- Journey timeline ---------- */
     gsap.set(".tag-in", { opacity: 0, scale: 0.6, transformOrigin: "50% 100%" });
     gsap.set(".step", { autoAlpha: 0, y: 30 });
     var prog = { p: 0 };
@@ -819,7 +779,6 @@
       scrollTrigger: { trigger: ".journey", start: "top top", end: "bottom bottom", scrub: 0.8 },
       onUpdate: function () { applyCam(); setProgress(prog.p); }
     });
-    // overview → step 1 (ads → chats)
     tl.to("#heroCopy", { autoAlpha: 0, y: -40, duration: 0.6 }, 0)
       .to("#cue", { autoAlpha: 0, duration: 0.3 }, 0)
       .to("#stepRail", { autoAlpha: 1, duration: 0.3 }, 0.5)
@@ -829,30 +788,26 @@
       .to(prog, { p: STOP.B, duration: 1, ease: "none" }, 1.1)
       .to(CAM, { x: F.B.x, y: F.B.y, duration: 1 }, 1.1)
       .to(tagEls.B, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 1.9)
-    // step 2 (Horus AI replies)
       .to(stepEls[0], { autoAlpha: 0, y: -30, duration: 0.4 }, 2.3)
       .to(stepEls[1], { autoAlpha: 1, y: 0, duration: 0.5, onStart: function () { setRail(1); }, onReverseComplete: function () { setRail(0); } }, 2.6)
       .to(prog, { p: STOP.C, duration: 1, ease: "none" }, 2.4)
       .to(CAM, { x: F.C.x, y: F.C.y, s: 1.7 * Z, duration: 1 }, 2.4)
       .to(tagEls.C, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 3.2)
-    // step 3 (shared to the right salesperson)
       .to(stepEls[1], { autoAlpha: 0, y: -30, duration: 0.4 }, 3.7)
       .to(stepEls[2], { autoAlpha: 1, y: 0, duration: 0.5, onStart: function () { setRail(2); }, onReverseComplete: function () { setRail(1); } }, 4.0)
       .to(prog, { p: STOP.D, duration: 1.4, ease: "none" }, 3.8)
       .to(CAM, { x: F.D.x, y: F.D.y, s: 1.55 * Z, duration: 1.4 }, 3.8)
       .to(tagEls.D, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 5.0)
-    // step 4 (closing)
       .to(stepEls[2], { autoAlpha: 0, y: -30, duration: 0.4 }, 5.5)
       .to(stepEls[3], { autoAlpha: 1, y: 0, duration: 0.5, onStart: function () { setRail(3); }, onReverseComplete: function () { setRail(2); } }, 5.8)
       .to(prog, { p: 1, duration: 1, ease: "none" }, 5.6)
       .to(CAM, { x: F.E.x, y: F.E.y, s: 1.7 * Z, duration: 1 }, 5.6)
       .to(tagEls.E, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 6.4)
-    // pull back to see the whole path
       .to(CAM, Object.assign({ x: 800, y: mobile ? 520 : 470, s: mobile ? OVER : 1, duration: 1.2 }, mobile ? { ax: .5, ay: .5 } : { ax: .64, ay: .52 }), 7.0)
       .to({}, { duration: 0.6 });
     applyCam(); setProgress(0);
 
-    /* ---------- Section reveals (one trigger per element, never stuck hidden) ---------- */
+    /* ---------- Section reveals ---------- */
     var sib = new Map();
     $$("[data-reveal]").forEach(function (e) {
       var n = sib.get(e.parentElement) || 0; sib.set(e.parentElement, n + 1);
